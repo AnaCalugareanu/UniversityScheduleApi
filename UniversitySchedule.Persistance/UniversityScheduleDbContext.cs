@@ -13,11 +13,8 @@ namespace UniversitySchedule.Persistance
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            var folder = Environment.SpecialFolder.LocalApplicationData;
-            var path = Environment.GetFolderPath(folder);
-            var dbPath = System.IO.Path.Join(path, "blogging.db");
-            Console.WriteLine(dbPath);
-            // connect to sqlite database
+            var path = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            var dbPath = Path.Join(path, "blogging.db");
             options.UseSqlite($"Data Source={dbPath}");
         }
     }
